@@ -44,6 +44,13 @@ export const deleteBlog = createAsyncThunk('blog/deleteblog', (id) => {
     .then(() => id);
 });
 
+export const getSingle = createAsyncThunk('blog/getsingle', (id) => {
+  return axios
+    .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    .then((res) => [res.data]);
+});
+
+
 export const blogSlice = createSlice({
   name: 'blogs',
   initialState,
@@ -85,6 +92,19 @@ export const blogSlice = createSlice({
       state.blogs = state.blogs.filter((blog) => blog.id !== action.payload);
     });
     builder.addCase(deleteBlog.rejected, (state, action) => {
+      state.error = action.error.message;
+    });
+    builder.addCase(getSingle.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getSingle.fulfilled, (state, action) => {
+      state.loading = false;
+      state.blogs = action.payload;
+      state.error = '';
+    });
+    builder.addCase(getSingle.rejected, (state, action) => {
+      state.loading = false;
+      state.blogs = [];
       state.error = action.error.message;
     });
   },

@@ -1,10 +1,11 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import AddBlog from './pages/AddBlog';
-import BlogContent from './pages/BlogContent';
-import Blogs from './pages/Blogs';
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import Home from "./pages/Home";
+import AddBlog from "./pages/AddBlog";
+import BlogContent from "./pages/BlogContent";
+import Blogs from "./pages/Blogs";
 
 function App() {
+  
   return (
     <div className="App">
       <BrowserRouter>

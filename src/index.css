@@ -5,9 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 @layer base {
-    html {
-  
-    }
     body{
       font-family: 'Montserrat', sans-serif !important;
       background-color: #f9f9f9 !important;
@@ -15,4 +12,10 @@
     ::selection {
       background-color: Gainsboro;
     }
+}
+
+@layer components {
+  .buttons {
+    @apply p-1 m-1 rounded border cursor-pointer font-semibold;
   }
+}
