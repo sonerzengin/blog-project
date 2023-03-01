@@ -50,7 +50,6 @@ export const getSingle = createAsyncThunk('blog/getsingle', (id) => {
     .then((res) => [res.data]);
 });
 
-
 export const blogSlice = createSlice({
   name: 'blogs',
   initialState,

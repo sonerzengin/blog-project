@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addBlog } from '../features/blogSlice';
 import Home from './Home';
 import { Link } from 'react-router-dom';
+import { BiArrowBack } from 'react-icons/bi';
 
 const AddBlog = () => {
   const [title, setTitle] = useState('');
@@ -20,8 +21,8 @@ const AddBlog = () => {
 
   return (
     <Home>
-      <div>
-        <Link to='/'>Geri </Link>
+      <div className='container mx-auto'>
+        <Link to='/blogs' className='flex items-center'><BiArrowBack /> Geri </Link>
         <form onSubmit={onSubmit}>
           <div className='text-3xl font-bold my-3'>Add Post</div>
           <div className="mb-6">
