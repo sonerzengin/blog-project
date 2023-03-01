@@ -5,6 +5,8 @@ import Home from './Home';
 import { Link } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 
+
+
 const AddBlog = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -12,11 +14,14 @@ const AddBlog = () => {
 
   const dispatch = useDispatch();
 
+
+
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(addBlog({ title, body, }));
     setTitle('');
     setBody('');
+    alert("Post added")
   };
 
   return (

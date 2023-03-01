@@ -1,11 +1,13 @@
-import React from 'react'
-import {ReactComponent as ReactLogo} from '../assets/logo.svg'
+import React from "react";
+import { Link } from "react-router-dom";
+import { ReactComponent as ReactLogo } from "../assets/logo.svg";
 
 const Logo = () => {
   return (
-    <ReactLogo />
-    
-  )
-}
+    <Link to="/">
+      <div className="text-4xl">blogApp</div>
+    </Link>
+  );
+};
 
-export default Logo
+export default Logo;

@@ -1,22 +1,22 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 const initialState = {
   loading: false,
   blogs: [],
-  error: '',
+  error: "",
 };
 
-export const getBlog = createAsyncThunk('blog/getblog', () => {
+export const getBlog = createAsyncThunk("blog/getblog", () => {
   return axios
-    .get('https://jsonplaceholder.typicode.com/posts')
+    .get("https://jsonplaceholder.typicode.com/posts")
     .then((response) => response.data);
 });
 
 export const addBlog = createAsyncThunk(
-  'blog/addblog',
+  "blog/addblog",
   ({ title, body, userId }) => {
     return axios
-      .post('https://jsonplaceholder.typicode.com/posts', {
+      .post("https://jsonplaceholder.typicode.com/posts", {
         title,
         body,
         userId,
@@ -25,33 +25,32 @@ export const addBlog = createAsyncThunk(
   }
 );
 export const updateBlog = createAsyncThunk(
-  'blog/updateblog',
-  ({ id, title, body, userId }) => {
+  "blog/updateblog",
+  ({ id, title, body }) => {
     return axios
       .put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
         id,
         title,
         body,
-        userId,
       })
       .then((response) => response.data);
   }
 );
 
-export const deleteBlog = createAsyncThunk('blog/deleteblog', (id) => {
+export const deleteBlog = createAsyncThunk("blog/deleteblog", (id) => {
   return axios
     .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
     .then(() => id);
 });
 
-export const getSingle = createAsyncThunk('blog/getsingle', (id) => {
+export const getSingle = createAsyncThunk("blog/getsingle", (id) => {
   return axios
     .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
     .then((res) => [res.data]);
 });
 
 export const blogSlice = createSlice({
-  name: 'blogs',
+  name: "blogs",
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getBlog.pending, (state) => {
@@ -60,7 +59,7 @@ export const blogSlice = createSlice({
     builder.addCase(getBlog.fulfilled, (state, action) => {
       state.loading = false;
       state.blogs = action.payload;
-      state.error = '';
+      state.error = "";
     });
     builder.addCase(getBlog.rejected, (state, action) => {
       state.loading = false;
@@ -73,7 +72,7 @@ export const blogSlice = createSlice({
     builder.addCase(addBlog.fulfilled, (state, action) => {
       state.loading = false;
       state.blogs = [...state.blogs, action.payload];
-      state.error = '';
+      state.error = "";
     });
     builder.addCase(addBlog.rejected, (state, action) => {
       state.loading = false;
@@ -99,7 +98,7 @@ export const blogSlice = createSlice({
     builder.addCase(getSingle.fulfilled, (state, action) => {
       state.loading = false;
       state.blogs = action.payload;
-      state.error = '';
+      state.error = "";
     });
     builder.addCase(getSingle.rejected, (state, action) => {
       state.loading = false;

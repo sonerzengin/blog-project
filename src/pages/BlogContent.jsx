@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { deleteBlog, getSingle, updateBlog } from '../features/blogSlice';
-import 'react-responsive-modal/styles.css';
-import { Modal } from 'react-responsive-modal';
-import Home from './Home';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { deleteBlog, getSingle, updateBlog } from "../features/blogSlice";
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
+import Home from "./Home";
 
 const BlogContent = () => {
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
 
   const blog = useSelector((state) => state.blogs);
   const dispatch = useDispatch();
@@ -32,8 +32,7 @@ const BlogContent = () => {
     e.preventDefault();
     setOpen(false);
     const id = params.id;
-    const userId = 1;
-    dispatch(updateBlog({ id, title, body, userId }));
+    dispatch(updateBlog({ id, title, body }));
   };
 
   return (
@@ -46,14 +45,9 @@ const BlogContent = () => {
           blog.blogs.map((blog) => (
             <div className="border p-2 rounded-lg bg-gray-100 max-w-[768px] mx-auto text-center">
               <div className="uppercase font-semibold mb-2">{blog.title}</div>
+
               <div className="text-sm mb-4">{blog.body}</div>
               <div className="flex justify-center">
-                <div
-                  className="buttons bg-red-400 hover:bg-red-300"
-                  onClick={() => dispatch(deleteBlog(params.id))}
-                >
-                  Delete
-                </div>
                 <div
                   className="buttons bg-teal-400 hover:bg-teal-300"
                   onClick={onOpenModal}
