@@ -16,20 +16,20 @@ const Blogs = () => {
     <Home>
       <div className="container mx-auto">
         <div className="text-2xl font-semibold my-2">Posts</div>
+        {blogs.loading && (
+          <div className="flex h-screen justify-center items-center w-full">
+            <Audio
+              height="120"
+              width="120"
+              radius="9"
+              color="gray"
+              ariaLabel="loading"
+              wrapperStyle
+              wrapperClass
+            />
+          </div>
+        )}
         <div className="grid grid-cols-4 gap-4 content-center">
-          {blogs.loading && (
-            <div className="flex h-screen justify-center items-center w-full">
-              <Audio
-                height="120"
-                width="120"
-                radius="9"
-                color="gray"
-                ariaLabel="loading"
-                wrapperStyle
-                wrapperClass
-              />
-            </div>
-          )}
           {!blogs.loading && blogs.error ? (
             <div>Error: {blogs.error}</div>
           ) : null}
